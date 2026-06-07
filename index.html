@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+        
+body{
+    font-family:Arial, sans-serif;
+}
+
+.hero{
+    position:relative;
+    height:100vh;
+
+    background:url("images/barber2.jpg");
+    background-size:cover;
+    background-position:center;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:20px 80px;
+
+    background:rgba(0,0,0,0.85);
+
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:1000;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    color:white;
+    font-size:32px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    gap:35px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    position:relative;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-5px;
+    width:0;
+    height:2px;
+    background:#c1121f;
+    transition:.3s;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+.hero-content{
+    position:relative;
+    z-index:10;
+
+    height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding-left:100px;
+}
+
+.hero-tag{
+    color:#c1121f;
+    letter-spacing:4px;
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.hero-content h1{
+    color:white;
+    font-size:90px;
+    font-weight:800;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.hero-content p{
+    color:#ddd;
+    font-size:22px;
+    max-width:600px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.hero-line{
+    width:120px;
+    height:4px;
+    background:#c1121f;
+    margin-bottom:35px;
+    border-radius:10px;
+}
+
+.btn{
+    width:230px;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    background:#c1121f;
+    padding:18px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:17px;
+    box-shadow:0 10px 25px rgba(193,18,31,.4);
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#ff2e3d;
+    transform:translateY(-3px);
+}
+
+#about,
+#services,
+#team,
+#contact{
+    text-align:center;
+}
+
+#about h2,
+#services h2,
+#team h2,
+#contact h2{
+    margin-bottom:20px;
+}
+#about{
+    padding:100px 80px;
+    padding-bottom:0px;
+    background:#f8f8f8;
+}
+
+.about-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+}
+
+.about-image{
+    flex:1;
+}
+
+.about-image img{
+    width:100%;
+    border-radius:10px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+}
+
+.about-content{
+    flex:1;
+}
+
+.about-content h4{
+    color:#c1121f;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.about-content h2{
+    font-size:42px;
+    color:#111;
+    margin-bottom:20px;
+}
+
+.about-content p{
+    color:#555;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.about-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#111;
+    color:white;
+    padding:12px 25px;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+.about-btn:hover{
+    background:#c1121f;
+}
+#services{
+    background:#f8f8f8;
+    padding:100px 80px;
+    text-align:center;
+}
+
+#services h2{
+    font-size:42px;
+    color:#111;
+    margin-bottom:50px;
+}
+
+.services-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.service-box{
+    width:320px;
+    background:#111;
+    color:white;
+    padding:40px 30px;
+    border-radius:10px;
+    transition:0.4s;
+    box-shadow:0 5px 20px rgba(0,0,0,0.15);
+}
+
+.service-box:hover{
+    transform:translateY(-10px);
+    background:#c1121f;
+}
+
+.service-number{
+    font-size:50px;
+    font-weight:bold;
+    color:#c1121f;
+    margin-bottom:15px;
+    transition:0.3s;
+}
+
+.service-box:hover .service-number{
+    color:white;
+}
+
+.service-box h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.service-box p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+.service-box:hover p{
+    color:white;
+}
+
+#team{
+    background:#111;
+    color:white;
+    padding:80px 80px;
+}
+
+.team{
+    display:flex;
+    justify-content:center;
+    gap:100px;
+    flex-wrap:wrap;
+}
+#team h2{
+    font-size:42px;
+    color:white;
+    margin-bottom:50px;
+}
+
+.team-card{
+    width:300px;
+    background:#1b1b1b;
+    box-shadow:0 10px 25px rgba(0,0,0,0.5);
+    border-radius:10px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.team-card:hover{
+    transform:translateY(-10px);
+    box-shadow: 0 15px 35px rgba(255,0,0,0.3);
+}
+
+.team-card img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+}
+
+.team-card h3{
+    color:#c1121f;
+    margin-top:20px;
+}
+
+.team-card p{
+    color:#ccc;
+    padding-bottom:20px;
+}
+
+.footer{
+    background:#0b0b0b;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.footer-container{
+    max-width:1200px;
+    margin:auto;
+    padding:70px 80px;
+    display:flex;
+    justify-content:space-between;
+    gap:80px;
+    flex-wrap:wrap;
+}
+
+.footer-brand,
+.footer-links,
+.footer-contact{
+    flex:1;
+    min-width:250px;
+}
+
+.footer h2,
+.footer h3{
+    color:#c1121f;
+    margin-bottom:20px;
+}
+
+.footer p{
+    color:#aaa;
+    line-height:1.8;
+}
+.tagline{
+    display:inline-block;
+    border:1px solid #c1121f;
+    padding:6px 12px;
+    border-radius:30px;
+    color:#c1121f;
+    font-size:11px;
+    letter-spacing:2px;
+    margin-bottom:18px;
+}
+
+.footer-links a{
+    display:block;
+    color:#aaa;
+    text-decoration:none;
+    margin-bottom:12px;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:#fff;
+}
+
+.footer-bottom{
+    text-align:center;
+    padding:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:#777;
+}
+@media (max-width:768px){
+
+    nav{
+        flex-direction:column;
+        padding:15px 20px;
+        gap:15px;
+    }
+
+    nav ul{
+        gap:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .hero-content{
+        padding:0 20px;
+        text-align:center;
+        align-items:center;
+    }
+
+    .hero-content h1{
+        font-size:48px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
+
+    .hero-tag{
+        font-size:12px;
+    }
+
+    .about-container{
+        flex-direction:column;
+    }
+
+    .about-content h2{
+        font-size:32px;
+    }
+
+    #about,
+    #services,
+    #team{
+        padding:60px 20px;
+    }
+
+    .service-box{
+        width:100%;
+        max-width:350px;
+    }
+
+    .team{
+        gap:30px;
+    }
+
+    .team-card{
+        width:100%;
+        max-width:350px;
+    }
+
+    .footer-container{
+        padding:50px 20px;
+        flex-direction:column;
+        gap:40px;
+        text-align:center;
+    }
+}
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">Jadhav & Son's</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <p class="hero-tag">
+            PREMIUM BARBER SHOP SINCE 2003
+        </p>
+
+        <h1>Jadhav & Son's</h1>
+
+        <p>
+            Professional Haircuts, Beard Styling and Grooming
+            Services Since 2003.
+        </p>
+
+        <div class="hero-line"></div>
+
+        <a href="#" class="btn">
+            Book Appointment
+        </a>
+
+    </div>
+
+</section>
+<!-- About -->
+<section id="about">
+
+    <div class="about-container">
+
+        <div class="about-image">
+            <img src="images/barber1.jpg" alt="About Barber Shop">
+        </div>
+
+        <div class="about-content">
+
+            <h4>ABOUT OUR</h4>
+
+            <h2>BARBER SHOP</h2>
+
+            <p>
+                At Jadhav & Son's, we have been delivering premium
+                grooming services since 2003. Our experienced barbers
+                specialize in modern haircuts, beard styling, and
+                classic grooming techniques.
+            </p>
+
+            <p>
+                We focus on quality service, customer satisfaction,
+                and a comfortable atmosphere that keeps our clients
+                coming back.
+            </p>
+
+            <a href="#" class="about-btn">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Services -->
+<!-- Services -->
+<section id="services">
+
+    <h2>Our Services</h2>
+
+    <div class="services-container">
+
+        <div class="service-box">
+            <div class="service-number">01</div>
+            <h3>Hair Cutting</h3>
+            <p>
+                Trendy, classic, and professional haircuts tailored
+                to your personality and style.
+            </p>
+        </div>
+
+        <div class="service-box">
+            <div class="service-number">02</div>
+            <h3>Beard Styling</h3>
+            <p>
+                Precision beard trimming, shaping, and grooming for
+                a sharp and confident look.
+            </p>
+        </div>
+
+        <div class="service-box">
+            <div class="service-number">03</div>
+            <h3>Hair Wash</h3>
+            <p>
+                Relaxing hair wash service with premium products for
+                freshness and comfort.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+<!-- Team -->
+<section id="team">
+
+    <h2>Meet Our Team</h2>
+
+    <div class="team">
+
+        <div class="team-card">
+            <img src="images/b2.jpg" alt="Barber">
+            <h3>Sunny Kaur</h3>
+            <p>Professional Barber</p>
+        </div>
+
+        <div class="team-card">
+            <img src="images/b5.jpg" alt="Barber">
+            <h3>Rohan Sharma</h3>
+            <p>Hair Stylist</p>
+        </div>
+
+        <div class="team-card">
+            <img src="images/b1.jpg" alt="Barber">
+            <h3>Suraj Patel</h3>
+            <p>Beard Specialist</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+    <h2>Jadhav & Son's</h2>
+
+    <p class="tagline">Since 2003</p>
+
+    <p>
+        Premium grooming services since 2003.
+        Crafting confidence through style,
+        precision and tradition.
+    </p>
+</div>
+
+        <div class="footer-links">
+            <h3>Navigation</h3>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#team">Team</a>
+        </div>
+
+        <div class="footer-contact">
+            <h3>Visit Us</h3>
+            <p><i class="fa-solid fa-location-dot"></i> Mumbai, Maharashtra</p>
+            <p><i class="fa-solid fa-phone"></i> +91 98765 43210</p>
+            <p><i class="fa-solid fa-envelope"></i> jadhavsons@gmail.com</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Jadhav & Son's • All Rights Reserved
+    </div>
+
+</footer>
+</body>
+</html>
